@@ -49,7 +49,16 @@ class upc {
 		}
 	}
 
-	public function build($code = null) {
+	public function embed($code) {
+		ob_start();
+		$this->build($code, true);
+		$src = ob_get_contents();
+		ob_end_clean();
+
+		return 'data:image/png;base64,' . base64_encode($src);
+	}
+
+	public function build($code = null, $embed = false) {
 		if(is_null($code)) {
 			$this->code = '00000000000';
 		}
@@ -151,7 +160,10 @@ class upc {
 			imagettftext($barcode, $outerdigitsscale, 0, $digit12_x, $this->barheight - ($this->padding/2) + $this->border, $black, $font, $digit12);
 			imagettftext($barcode, $labelscale, 0, $label_x, $label_y, $black, $font, $this->label);
 
-			header("Content-type: image/png");
+			if(!$embed) {
+				header("Content-type: image/png");
+			}
+
 			imagepng($barcode);
 			imagedestroy($barcode);
 		}
