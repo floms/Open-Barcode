@@ -80,7 +80,9 @@ class upc {
 				}
 			}
 
-			$checkdigit = 10 - $checksum % 10;
+			$checksum %= 10;
+			
+			$checkdigit = ($checksum != 0) ? (10 - $checksum) : $checksum;
 
 			$this->code .= $checkdigit;
 
@@ -170,5 +172,3 @@ class upc {
 	}
 
 }
-
-?>
