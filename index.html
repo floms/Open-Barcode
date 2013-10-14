@@ -5,10 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+	
+	<script src="javascripts/openbarcode.js"></script>
+	<script>
+		function generateBarcode(){
+		
+			var type = document.getElementById("barcode-type").value;
+			
+			
+			var code = document.getElementById("barcode-code").value;
 
+			switch(type) {
+				case "1":
+					if(code.length != 11 && code.length != 12) {
+						alert("UPC-A barcodes are at least 11 digits long and at most 12 digits.");
+						return;
+					}
+					if(code.match(/^\d+$/) == null) {
+						alert("Barcode has to be Numeric");
+						return;
+					}
+				break;
+				case "2":
+					if(code.length != 12 && code.length != 13) {
+						alert("EAN13 barcodes are at least 12 digits long and at most 13 digits.");
+						return;
+					}
+
+					if(code.match(/^\d+$/) == null) {
+						alert("Barcode has to be Numeric");
+						return;
+					}
+				case "3":
+					break;
+				default:
+					alert("Please select a barcode type!");
+					return;
+			}
+			
+			var bc = null;
+			
+			switch(type) {
+				case "1":
+					bc = new OpenBarcode.UPC(code);
+				break;
+				case "2":
+					bc = new OpenBarcode.EAN(code);
+				break;
+				default:
+					bc = new OpenBarcode.Code39(code);
+			}
+			
+			
+			
+			var bars = bc.barcode();
+
+			var bch = document.getElementById("barcode-wrapper");
+			
+			bch.innerHTML = "";
+			
+			for(i = 0; i < bars.length; i++) {
+				var color = (bars[i]) == 1 ? "#000" : "#fff";
+				
+				var el = "<div style='width:2px; height:60px; background:"+color+"; float:left;'></div>";
+				
+				bch.innerHTML += el;
+			}
+
+			document.getElementById("barcode-code").value = bc.code;
+		}
+	</script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -37,6 +107,36 @@
 $ git fetch origin
 $ git checkout gh-pages
 </code></pre>
+
+          <h3>
+<a name="barcode-generator" class="anchor" href="#barcode-generator"><span class="octicon octicon-link"></span></a>Barcode Generator.</h3>
+
+<p>
+	<div class="row-fluid">
+		<div class="span4"><label for="barcode-type">Type:</label></div>
+		<div class="span8">
+				<select name="barcode-type" id="barcode-type" class="span12">
+                	<option></option>
+                    <option value="1">UPC-A</option>
+                    <option value="2">EAN13</option>
+                    <option value="3">Code39</option>
+                </select>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4"><label for="barcode-code">Code:</label></div>
+		<div class="span8">
+			<input type="text" name="barcode-code" id="barcode-code" class="span12">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<a class="btn btn-primary pull-right" onClick="generateBarcode()"><i class="icon-play icon-white"></i>&nbsp;&nbsp;&nbsp;Generate</a>
+	</div>
+	<div class="row-fluid">
+		<div class="span12 text-center" id="barcode-wrapper">
+		</div>
+	</div>
+</p>
 
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
