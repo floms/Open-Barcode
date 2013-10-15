@@ -35,6 +35,8 @@ interface LinearBarcode
 
     public function barcode();
 
+    public function code();
+
     public function calculateCheckDigit();
 }
 
@@ -118,6 +120,10 @@ class UPC implements LinearBarcode
         else
             return $check_sum;
     }
+
+	public function code(){
+		return $this->code;
+	}
 }
 
 /**
@@ -307,6 +313,10 @@ class EAN implements LinearBarcode
             return $check_sum;
         }
     }
+
+	public function code(){
+		return $this->code;
+	}
 }
 
 /**
@@ -400,4 +410,8 @@ class Code39 implements LinearBarcode
     {
         return 0;
     }
+
+	public function code(){
+		return $this->code;
+	}
 }

@@ -35,6 +35,8 @@ window.OpenBarcode = (function () {
         };
         this.calculateCheckDigit = function () {
         };
+		this.code = function () {
+        };
     };
 
     /**
@@ -57,15 +59,15 @@ window.OpenBarcode = (function () {
 
         this.prototype = new OpenBarcode.LinearBarCode()
 
-        this.code = code.substr(0, 11);
+        this.__code = code.substr(0, 11);
 
         this.buildSequence();
     };
 
     OpenBarcode.UPC.prototype.buildSequence = function () {
-        this.code += this.calculateCheckDigit();
+        this.__code += this.calculateCheckDigit();
 
-        var code = "*" + this.code.substr(0, 6) + "#" + this.code.substr(6, 6) + "*";
+        var code = "*" + this.__code.substr(0, 6) + "#" + this.__code.substr(6, 6) + "*";
 
         for (var i = 0; i < code.length; i++) {
             this.bars = this.bars.concat(this.mapSequence(code[i], i));
@@ -74,6 +76,10 @@ window.OpenBarcode = (function () {
 
     OpenBarcode.UPC.prototype.barcode = function () {
         return this.bars;
+    };
+	
+	OpenBarcode.UPC.prototype.code = function () {
+        return this.__code;
     };
 
     OpenBarcode.UPC.prototype.mapSequence = function (char, pos) {
@@ -105,7 +111,7 @@ window.OpenBarcode = (function () {
     OpenBarcode.UPC.prototype.calculateCheckDigit = function () {
         var check_sum = 0;
         for (i = 0; i < 11; i++) {
-            digit = parseInt(this.code[i]);
+            digit = parseInt(this.__code[i]);
             if (i % 2 == 0) {
                 check_sum += digit * 3;
             }
@@ -139,7 +145,7 @@ window.OpenBarcode = (function () {
 
         this.prototype = new OpenBarcode.LinearBarCode();
 
-        this.code = code.substr(0, 12);
+        this.__code = code.substr(0, 12);
 
         this.base = parseInt(code[0]);
 
@@ -147,9 +153,9 @@ window.OpenBarcode = (function () {
     };
 
     OpenBarcode.EAN.prototype.buildSequence = function () {
-        this.code += this.calculateCheckDigit();
+        this.__code += this.calculateCheckDigit();
 
-        var code = "*" + this.code.substr(1, 6) + "#" + this.code.substr(7, 6) + "*";
+        var code = "*" + this.__code.substr(1, 6) + "#" + this.__code.substr(7, 6) + "*";
 
         for (i = 0; i < code.length; i++) {
             this.bars = this.bars.concat(this.mapSequence(code[i], i));
@@ -160,6 +166,10 @@ window.OpenBarcode = (function () {
         return this.bars;
     };
 
+	OpenBarcode.EAN.prototype.code = function () {
+        return this.__code;
+    };
+	
     OpenBarcode.EAN.prototype.codeL = function codeL() {
         return {
             "0": [0, 0, 0, 1, 1, 0, 1],
@@ -178,7 +188,7 @@ window.OpenBarcode = (function () {
     };
 
     OpenBarcode.EAN.prototype.codeG = function () {
-        var base = this.codeL();
+        var base = this.__codeL();
 
         base["0"] = [0, 1, 0, 0, 1, 1, 1];
         base["1"] = [0, 1, 1, 0, 0, 1, 1];
@@ -196,7 +206,7 @@ window.OpenBarcode = (function () {
 
 
     OpenBarcode.EAN.prototype.codeR = function () {
-        var base = this.codeL();
+        var base = this.__codeL();
 
         base["0"] = [1, 1, 1, 0, 0, 1, 0];
         base["1"] = [1, 1, 0, 0, 1, 1, 0];
@@ -220,63 +230,63 @@ window.OpenBarcode = (function () {
         var b = this.base;
 
         if (pos > 6) {
-            sequence = this.codeR();
+            sequence = this.__codeR();
         } else if (b == 0) {
-            sequence = this.codeL();
+            sequence = this.__codeL();
         } else if (b == 1) {
             if (pos == 1 || pos == 2 || pos == 4) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 2) {
             if (pos == 1 || pos == 2 || pos == 5) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
 
         } else if (b == 3) {
             if (pos == 1 || pos == 2 || pos == 6) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 4) {
             if (pos == 1 || pos == 3 || pos == 4) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 5) {
             if (pos == 1 || pos == 4 || pos == 5) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 6) {
             if (pos == 1 || pos == 5 || pos == 6) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 7) {
             if (pos == 1 || pos == 3 || pos == 5) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else if (b == 8) {
             if (pos == 1 || pos == 3 || pos == 6) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         } else {
             if (pos == 1 || pos == 4 || pos == 6) {
-                sequence = this.codeL();
+                sequence = this.__codeL();
             } else {
-                sequence = this.codeG();
+                sequence = this.__codeG();
             }
         }
 
@@ -287,7 +297,7 @@ window.OpenBarcode = (function () {
     OpenBarcode.EAN.prototype.calculateCheckDigit = function () {
         var check_sum = 0;
         for (i = 0; i < 12; i++) {
-            var digit = parseInt(this.code[i]);
+            var digit = parseInt(this.__code[i]);
             if (i % 2 == 1) {
                 check_sum += digit * 3;
             } else {
@@ -314,21 +324,25 @@ window.OpenBarcode = (function () {
 
         this.prototype = new OpenBarcode.LinearBarCode();
 
-        this.code = code.toUpperCase();
+        this.__code = code.toUpperCase();
         this.buildSequence();
     };
 
     OpenBarcode.Code39.prototype.buildSequence = function () {
-        var code = "*" + this.code + "*";
+        var code = "*" + this.__code + "*";
 
-        for ($i = 0; $i < code.length; $i++) {
+        for (i = 0; i < code.length; i++) {
             this.bars = this.bars.concat(this.mapSequence(code[i], i).concat([0]));
         }
     };
 
     OpenBarcode.Code39.prototype.barcode = function () {
         return this.bars;
-    }
+    };
+	
+	OpenBarcode.Code39.prototype.code = function () {
+        return this.__code;
+    };
 
     OpenBarcode.Code39.prototype.mapSequence = function (char, pos) {
         var sequence = {
