@@ -477,3 +477,25 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+.c-font {
+    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-size: 1em;
+    font-weight: bold;
+}
+a.btn {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+.bold {
+    font-weight: bold;
+}
+.bar {
+    width:2px; height:60px; float: left;
+}
+#barcode-wrapper {
+    padding: 10px;
+    border:1px solid #000;
+    display: none;
+}

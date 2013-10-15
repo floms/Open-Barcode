@@ -48,14 +48,11 @@ window.OpenBarcode = (function () {
     OpenBarcode.UPC = function (code) {
         this.bars = new Array();
 
-        if (code.length != 11 && code.length != 12) {
-            throw new function () {
-                this.message = "Invalid Barcode Length";
-                this.name = "Exception";
-            };
+        if ((code.length != 11 && code.length != 12) || code.match(/^\d+$/) == null) {
+            throw "Invalid Barcode Length: UPC-A requires an 11-12 digit numeric barcode";
         }
 
-        this.prototype = new OpenBarcode.LinearBarCode()
+        this.prototype = new OpenBarcode.LinearBarCode();
 
         this.code = code.substr(0, 11);
 
@@ -131,10 +128,8 @@ window.OpenBarcode = (function () {
         this.bars = new Array();
         this.base = 0;
 
-        if (code.length != 12 && code.length != 13) {
-            throw new function () {
-
-            };
+        if ((code.length != 12 && code.length != 13) || code.match(/^\d+$/) == null) {
+            throw "Invalid Barcode Length: EAN13 requires an 12-13 digit numeric barcode";
         }
 
         this.prototype = new OpenBarcode.LinearBarCode();
@@ -322,7 +317,7 @@ window.OpenBarcode = (function () {
         var code = "*" + this.code + "*";
 
         for (i = 0; i < code.length; i++) {
-			console.log();
+            console.log();
             this.bars = this.bars.concat(this.mapSequence(code[i], i)).concat([0]);
         }
     };

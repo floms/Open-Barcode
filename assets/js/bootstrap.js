@@ -32,7 +32,7 @@
 
       var transitionEnd = (function () {
 
-        var el = document.createElement('bootstrap')
+        var el = document.createElement('assets')
           , transEndEventNames = {
                'WebkitTransition' : 'webkitTransitionEnd'
             ,  'MozTransition'    : 'transitionend'
@@ -58,7 +58,7 @@
   })
 
 }(window.jQuery);/* ==========================================================
- * bootstrap-alert.js v2.3.2
+ * assets-alert.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#alerts
  * ==========================================================
  * Copyright 2013 Twitter, Inc.
@@ -156,7 +156,7 @@
   $(document).on('click.alert.data-api', dismiss, Alert.prototype.close)
 
 }(window.jQuery);/* ============================================================
- * bootstrap-button.js v2.3.2
+ * assets-button.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#buttons
  * ============================================================
  * Copyright 2013 Twitter, Inc.
@@ -260,7 +260,7 @@
   })
 
 }(window.jQuery);/* ==========================================================
- * bootstrap-carousel.js v2.3.2
+ * assets-carousel.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#carousel
  * ==========================================================
  * Copyright 2013 Twitter, Inc.
@@ -466,7 +466,7 @@
   })
 
 }(window.jQuery);/* =============================================================
- * bootstrap-collapse.js v2.3.2
+ * assets-collapse.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#collapse
  * =============================================================
  * Copyright 2013 Twitter, Inc.
@@ -632,7 +632,7 @@
   })
 
 }(window.jQuery);/* ============================================================
- * bootstrap-dropdown.js v2.3.2
+ * assets-dropdown.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#dropdowns
  * ============================================================
  * Copyright 2013 Twitter, Inc.
@@ -801,7 +801,7 @@
 
 }(window.jQuery);
 /* =========================================================
- * bootstrap-modal.js v2.3.2
+ * assets-modal.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#modals
  * =========================================================
  * Copyright 2013 Twitter, Inc.
@@ -1048,7 +1048,7 @@
 
 }(window.jQuery);
 /* ===========================================================
- * bootstrap-tooltip.js v2.3.2
+ * assets-tooltip.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ===========================================================
@@ -1409,7 +1409,7 @@
 
 }(window.jQuery);
 /* ===========================================================
- * bootstrap-popover.js v2.3.2
+ * assets-popover.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#popovers
  * ===========================================================
  * Copyright 2013 Twitter, Inc.
@@ -1523,7 +1523,7 @@
 
 }(window.jQuery);
 /* =============================================================
- * bootstrap-scrollspy.js v2.3.2
+ * assets-scrollspy.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#scrollspy
  * =============================================================
  * Copyright 2013 Twitter, Inc.
@@ -1684,7 +1684,7 @@
   })
 
 }(window.jQuery);/* ========================================================
- * bootstrap-tab.js v2.3.2
+ * assets-tab.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#tabs
  * ========================================================
  * Copyright 2013 Twitter, Inc.
@@ -1827,7 +1827,7 @@
   })
 
 }(window.jQuery);/* =============================================================
- * bootstrap-typeahead.js v2.3.2
+ * assets-typeahead.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#typeahead
  * =============================================================
  * Copyright 2013 Twitter, Inc.
@@ -2162,7 +2162,7 @@
 
 }(window.jQuery);
 /* ==========================================================
- * bootstrap-affix.js v2.3.2
+ * assets-affix.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#affix
  * ==========================================================
  * Copyright 2013 Twitter, Inc.
