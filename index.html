@@ -172,7 +172,7 @@ $numericCode = $code39->code;
 // UPC-A barcode
 upc = new UPC("12345678998");
 bars = upc.barcode();
-numericCode = $upc->code;
+numericCode = upc.code;
 
 // EAN13 barcode
 ean = new EAN("123456789985");
@@ -180,10 +180,40 @@ bars = ean.barcode();
 numericCode = ean.code;
 
 // Code39 barcode
-code39 = new \OpenBarcode\Code39("Open Barcode");
+code39 = new Code39("Open Barcode");
 bars = code39.barcode();
 numericCode = code39.code;
 </code></pre>
+
+            <h3><a name="usage-java" class="anchor" href="#usage-java"></a>Java</h3>
+<pre><code>import com.floms.openbarcode.Code39;
+import com.floms.openbarcode.EAN;
+import com.floms.openbarcode.LinearBarcode;
+import com.floms.openbarcode.UPC;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // UPC-A barcode
+        LinearBarcode upc = new UPC("12345678998");
+        int[] bars = upc.barcode();
+        String upcCode = upc.code();
+
+        // EAN13 barcode
+        LinearBarcode ean = new EAN("123456789985");
+        int[] eanBars = ean.barcode();
+        String eanCode = ean.code();
+
+        // Code39 barcode
+        LinearBarcode code39 = new Code39("Open Barcode");
+        int[] code39Bars = code39.barcode();
+        String code39Code = code39.code();
+
+    }
+}
+
+</code></pre>
+
 
             <h3><a name="cont" class="anchor" href="#cont"></a>Authors and Contributors</h3>
 
